@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Auto Push - 🚀 ワンコマンドでGit作業を自動化</title>
-    <meta name="description" content="開発者の生産性を革命的に向上させる汎用Git自動プッシュツール。美しいターミナル出力と簡単インストール。">
+    <title>Git Auto Push - 🎮 ゲーミフィケーション付きGit自動化ツール</title>
+    <meta name="description" content="レベル・XP・バッジシステム搭載！外部連携・自動更新・テーマ機能で開発体験を革命化する究極のGitツール。">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,7 +180,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <span class="text-2xl">🚀</span>
+                    <span class="text-2xl">🎮</span>
                     <span class="text-xl font-bold gradient-text">Git Auto Push</span>
                 </div>
                 <nav class="hidden md:flex space-x-8">
@@ -188,6 +188,7 @@
                     <a href="#install" class="hover:text-purple-400 transition-colors">インストール</a>
                     <a href="#usage" class="hover:text-purple-400 transition-colors">使用方法</a>
                     <a href="#examples" class="hover:text-purple-400 transition-colors">活用例</a>
+                    <a href="#gaming" class="hover:text-yellow-400 transition-colors">🎮ゲーミング</a>
                 </nav>
                 <a href="https://github.com/daideguchi/git-autopush" target="_blank" class="btn-primary px-4 py-2 rounded-lg font-medium">
                     <i class="fab fa-github mr-2"></i>GitHub
@@ -202,12 +203,12 @@
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="animate-fadeInUp">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="block">開発者の生産性を</span>
-                    <span class="gradient-text">革命的に向上</span>
+                    <span class="block">🎮 ゲーミフィケーション付き</span>
+                    <span class="gradient-text">究極Gitツール</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    面倒なコミット＆プッシュ作業を<span class="text-purple-400 font-semibold">一瞬で完了</span>させる、
-                    美しいターミナル出力付きの自動化ツール
+                    <span class="text-yellow-400 font-bold">レベル・XP・バッジシステム</span>で開発が楽しくなる！<br>
+                    <span class="text-cyan-400">Slack/Discord連携</span>・<span class="text-green-400">自動更新</span>・<span class="text-purple-400">テーマ機能</span>搭載
                 </p>
                 
                 <!-- Terminal Demo -->
@@ -223,21 +224,19 @@
                             <span class="command-line">$ </span><span class="typing-effect" id="typing-text"></span>
                         </div>
                         <div id="terminal-output" class="opacity-0">
-                            <div class="info-text">🚀 Git Auto Push Tool</div>
+                            <div class="info-text">🎮 Git Auto Push Tool</div>
+                            <div class="text-purple-400">🌿main 🌐project 🎮Lv.5 ⚡450 XP 🔥3日 🚀25回</div>
                             <div class="text-gray-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                            <div class="info-text mt-2">ℹ️ 変更されたファイル:</div>
-                            <div class="success-text ml-4">M  src/main.js</div>
-                            <div class="success-text ml-4">A  src/utils.js</div>
-                            <div class="success-text ml-4">M  README.md</div>
-                            <div class="mt-2">📦 <span class="info-text">コミットメッセージ:</span> ✨ 新機能実装完了</div>
-                            <div class="info-text mt-2">ℹ️ 変更をステージング中...</div>
-                            <div class="info-text">ℹ️ コミット中...</div>
-                            <div class="success-text">✅ コミット完了</div>
-                            <div class="info-text">ℹ️ リモートリポジトリにプッシュ中...</div>
-                            <div class="success-text mt-2 text-lg">✅✅✅ 自動プッシュ完了！✅✅✅</div>
-                            <div class="text-purple-400 mt-2">Repository: https://github.com/user/project.git</div>
-                            <div class="text-purple-400">Branch: main</div>
-                            <div class="text-purple-400">Commit: a1b2c3d</div>
+                            <div class="info-text mt-2">📦 コミットメッセージ: ✨ 新機能実装完了</div>
+                            <div class="success-text mt-2">✅✅✅ 自動プッシュ完了！✅✅✅</div>
+                            <div class="text-yellow-400 mt-3">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                            <div class="text-yellow-400">✨ === ゲーム結果 === ✨</div>
+                            <div class="text-yellow-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                            <div class="text-gold mt-2">👑👑👑 LEVEL UP! 👑👑👑</div>
+                            <div class="text-purple-400">✨ レベル 6 に到達しました！ ✨</div>
+                            <div class="text-cyan-400 mt-2">✨ 新しいバッジを獲得！ ⚔️ コミット戦士</div>
+                            <div class="text-green-400">🎉 +50 XP獲得！ 🔥 4日連続プッシュ！</div>
+                            <div class="text-yellow-400 mt-2">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
                         </div>
                     </div>
                 </div>
@@ -272,6 +271,15 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-5xl mb-4">🎮</div>
+                    <h3 class="text-2xl font-bold mb-4">ゲーミフィケーション</h3>
+                    <p class="text-gray-300">
+                        レベル・XP・バッジシステムで開発が楽しくなる！毎回のプッシュが<span class="text-yellow-400">冒険</span>に変わります。
+                        <span class="text-cyan-400">ストリーク機能</span>で継続的開発をサポート。
+                    </p>
+                </div>
+                
                 <div class="feature-card p-8 rounded-xl">
                     <div class="text-5xl mb-4">⚡</div>
                     <h3 class="text-2xl font-bold mb-4">超高速実行</h3>
@@ -314,6 +322,33 @@
                     <p class="text-gray-300">
                         自動タイムスタンプ付きメッセージ生成。もちろんカスタムメッセージも
                         簡単に指定できます。
+                    </p>
+                </div>
+                
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-5xl mb-4">🔔</div>
+                    <h3 class="text-2xl font-bold mb-4">外部サービス連携</h3>
+                    <p class="text-gray-300">
+                        <span class="text-blue-400">Slack</span>・<span class="text-purple-400">Discord</span>・<span class="text-green-400">LINE</span>・Teams連携で
+                        チーム開発を強力サポート。プッシュ通知やレベルアップ共有も可能。
+                    </p>
+                </div>
+                
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-5xl mb-4">🔄</div>
+                    <h3 class="text-2xl font-bold mb-4">自動更新システム</h3>
+                    <p class="text-gray-300">
+                        <code class="text-green-400">ap --update</code> で最新版に瞬時更新。
+                        全プロジェクトで統一バージョン管理。設定も自動バックアップ。
+                    </p>
+                </div>
+                
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4">テーマシステム</h3>
+                    <p class="text-gray-300">
+                        <span class="text-cyan-400">Cyberpunk</span>・<span class="text-blue-400">Ocean</span>・<span class="text-yellow-400">Retro</span>など
+                        お好みのテーマで開発体験をカスタマイズ。
                     </p>
                 </div>
                 
@@ -424,6 +459,28 @@
                                 <pre id="basic-usage-2" class="text-gray-100"><code>ap "新機能を追加"
 ap "バグ修正完了"
 ap "🎉 リリース準備完了"</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
+                                <span class="text-gray-300 font-medium">🎮 ゲーミフィケーション&外部連携</span>
+                                <button onclick="copyToClipboard('gaming-usage')" class="text-purple-400 hover:text-purple-300 transition-colors">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="p-6">
+                                <pre id="gaming-usage" class="text-gray-100"><code># テーマ指定でプッシュ
+ap --theme cyberpunk "新機能実装"
+
+# Slack通知付きプッシュ
+ap --notify-slack "バグ修正完了"
+
+# 全機能有効でプッシュ
+ap --enable-all "リリース準備完了"
+
+# 最新版に更新
+ap --update</code></pre>
                             </div>
                         </div>
                     </div>
@@ -574,6 +631,113 @@ ap "⚡ レスポンス速度30%向上"</code></pre>
         </div>
     </section>
 
+    <!-- Gaming Features Section -->
+    <section id="gaming" class="py-20 relative">
+        <div class="absolute inset-0 gradient-bg opacity-5"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    🎮 <span class="gradient-text">ゲーミフィケーション</span>で開発が変わる
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    毎回のプッシュが楽しい冒険に。レベルアップ・バッジ・ストリーク機能で継続的開発をサポート
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="feature-card p-6 rounded-xl text-center">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2 text-yellow-400">XP システム</h3>
+                    <p class="text-gray-300 text-sm">プッシュごとに50XP獲得<br>100XPでレベルアップ！</p>
+                </div>
+                
+                <div class="feature-card p-6 rounded-xl text-center">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">バッジシステム</h3>
+                    <p class="text-gray-300 text-sm">🌱初心者→🚶駆け出し→⚔️戦士<br>→🥋マスター→🥷忍者→🦄レジェンド</p>
+                </div>
+                
+                <div class="feature-card p-6 rounded-xl text-center">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold mb-2 text-orange-400">ストリーク</h3>
+                    <p class="text-gray-300 text-sm">連続プッシュ日数記録<br>継続的開発習慣をサポート</p>
+                </div>
+                
+                <div class="feature-card p-6 rounded-xl text-center">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-2 text-green-400">統計情報</h3>
+                    <p class="text-gray-300 text-sm">詳細な開発統計<br>プログレスバー表示</p>
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">🎨 外部連携・テーマ機能</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="feature-card p-4 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🔔</span>
+                                <div>
+                                    <h4 class="font-bold text-lg">通知連携</h4>
+                                    <p class="text-gray-300 text-sm">Slack・Discord・LINE・Teams・Email</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card p-4 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🎨</span>
+                                <div>
+                                    <h4 class="font-bold text-lg">テーマシステム</h4>
+                                    <p class="text-gray-300 text-sm">Cyberpunk・Ocean・Retro・Default</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card p-4 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🔄</span>
+                                <div>
+                                    <h4 class="font-bold text-lg">自動更新</h4>
+                                    <p class="text-gray-300 text-sm">GitHubから最新版を自動取得・更新</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">📈 レベルアップ体験</h3>
+                    
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                            <span class="text-gray-300 text-sm ml-4">gaming-example</span>
+                        </div>
+                        <div class="terminal-content text-sm">
+                            <div class="command-line">$ ap --theme cyberpunk "新機能実装"</div>
+                            <div class="mt-2">
+                                <div class="text-cyan-400">💀=== CYBERPUNK AUTOPUSH v2.0 ===💀</div>
+                                <div class="text-purple-400">🌿main 🌐project 🎮Lv.5 ⚡450/500XP 🔥7日 🚀50回</div>
+                                <div class="text-green-400 mt-2">✅✅✅ PUSH COMPLETE ✅✅✅</div>
+                                <div class="text-yellow-400 mt-2">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                                <div class="text-yellow-400">✨ === GAMING RESULTS === ✨</div>
+                                <div class="text-gold mt-1">👑👑👑 LEVEL UP! 👑👑👑</div>
+                                <div class="text-purple-400">✨ レベル 6 に到達！ ✨</div>
+                                <div class="text-cyan-400">✨ NEW BADGE: 🥋 プッシュマスター</div>
+                                <div class="text-green-400">🎉 +50 XP！ 🔥 8日連続！</div>
+                                <div class="text-blue-400 mt-2">[Slack] レベルアップをチームに通知 📢</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-20 relative">
         <div class="absolute inset-0 gradient-bg opacity-10"></div>
@@ -617,7 +781,7 @@ ap "⚡ レスポンス速度30%向上"</code></pre>
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <span class="text-2xl">🚀</span>
+                    <span class="text-2xl">🎮</span>
                     <span class="text-xl font-bold gradient-text">Git Auto Push</span>
                 </div>
                 
