@@ -301,14 +301,18 @@
             font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
             line-height: 1.8;
-            color: #00ff00;
+            color: #e2e8f0;
         }
         
-        .typing-animation {
-            animation: typing 3s steps(50, end) infinite;
+        .typing-effect {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
         }
         
-        @keyframes typing {
+        @keyframes blink {
+            0%, 50% { border-color: #667eea; }
+            51%, 100% { border-color: transparent; }
+        }        @keyframes typing {
             from { opacity: 0; }
             to { opacity: 1; }
         }
@@ -760,20 +764,28 @@
                         </div>
                         <span>🎮 Git Auto Push - ゲーミングセッション</span>
                     </div>
-                                         <div class="terminal-content">
-                         <div>$ ap "🎨 新機能実装完了！"</div>
-                         <div style="margin: 1rem 0;">
-                             <div>🚀 === Git Push 開始 ===</div>
-                             <div>✅ コミット完了</div>
-                             <div>✅ プッシュ完了</div>
-                         </div>
-                         <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(99, 102, 241, 0.3); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
-                             <div style="color: #00FF7F; font-size: 1.1rem; margin-bottom: 0.5rem;">🏖️ WEEKEND WARRIOR! 🏖</div>
-                             <div style="color: #FF69B4; margin-bottom: 0.5rem;">✨ 🎨 MASTERPIECE! 🎨</div>
-                             <div style="color: #FFD700; font-weight: bold;">🎉 +50 XP獲得！</div>
-                             <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                                 <div style="color: #FFA500;">📊 Level 4 → Level 5! 👑</div>
-                                 <div style="color: #FF6B6B;">🔥 7日連続ストリーク継続中！</div>
+                    <div class="terminal-content">
+                        <div style="margin-bottom: 1rem;">
+                            <span style="color: #667eea; font-weight: bold;">$ </span><span class="typing-effect" id="typing-text"></span>
+                        </div>
+                        <div id="terminal-output" style="opacity: 0; transition: opacity 0.5s ease;">
+                            <div style="color: #22c55e;">🎮 Git Auto Push Tool</div>
+                            <div style="color: #8b5cf6;">🌿main 🌐project 🎮Lv.5 ⚡450 XP 🔥3日 🚀25回</div>
+                            <div style="color: #6b7280;">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                            <div style="color: #22c55e; margin-top: 8px;">📦 コミットメッセージ: ✨ 新機能実装完了</div>
+                            <div style="color: #22c55e; margin-top: 8px;">✅✅✅ 自動プッシュ完了！✅✅✅</div>
+                            <div style="color: #eab308; margin-top: 12px;">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                            <div style="color: #eab308;">✨ === ゲーム結果 === ✨</div>
+                            <div style="color: #eab308;">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                            <div style="color: #ffd700; margin-top: 8px;">👑👑👑 LEVEL UP! 👑👑👑</div>
+                            <div style="color: #8b5cf6;">✨ レベル 6 に到達しました！ ✨</div>
+                            <div style="color: #06b6d4; margin-top: 8px;">✨ 新しいバッジを獲得！ ⚔️ コミット戦士</div>
+                            <div style="color: #22c55e;">🎉 +50 XP獲得！ 🔥 4日連続プッシュ！</div>
+                            <div style="color: #00bfff; margin-top: 8px;">👥 チーム貢献: +10 ポイント</div>
+                            <div style="color: #32cd32;">🤖 AI PR作成済み</div>
+                            <div style="color: #eab308; margin-top: 8px;">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                        </div>
+                    </div>                                 <div style="color: #FF6B6B;">🔥 7日連続ストリーク継続中！</div>
                              </div>
                          </div>
                      </div>
