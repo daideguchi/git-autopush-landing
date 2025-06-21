@@ -1111,6 +1111,86 @@
         });
     </script>
     
+    <!-- 高速タイピング演出スクリプト -->
+    <script>
+        // 高速タイピング演出 🚀
+        const commands = [
+            'ap "✨ 新機能実装完了"',
+            'ap "🐛 バグ修正"',
+            'ap "📝 ドキュメント更新"',
+            'ap',
+            'ap "🎉 リリース準備完了"'
+        ];
+        
+        let commandIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 40;    // 高速化: 100ms → 40ms
+        const deletingSpeed = 20;  // 高速化: 50ms → 20ms
+        const pauseTime = 1200;    // 短縮: 2000ms → 1200ms
+        
+        function typeWriter() {
+            const currentCommand = commands[commandIndex];
+            const typingElement = document.getElementById('typing-text');
+            
+            if (!typingElement) return;
+            
+            if (!isDeleting && charIndex < currentCommand.length) {
+                typingElement.textContent += currentCommand.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, typingSpeed);
+            } else if (isDeleting && charIndex > 0) {
+                typingElement.textContent = currentCommand.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeWriter, deletingSpeed);
+            } else if (!isDeleting && charIndex === currentCommand.length) {
+                // Show terminal output
+                if (commandIndex === 0) {
+                    setTimeout(() => {
+                        const output = document.getElementById('terminal-output');
+                        if (output) output.style.opacity = '1';
+                    }, 800);
+                }
+                
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                commandIndex = (commandIndex + 1) % commands.length;
+                
+                // Hide terminal output when starting new cycle
+                if (commandIndex === 0) {
+                    const output = document.getElementById('terminal-output');
+                    if (output) output.style.opacity = '0';
+                }
+                
+                setTimeout(typeWriter, 300);
+            }
+        }
+        
+        // Start typing effect
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeWriter, 800);
+        });
+        
+        // ターミナルクリック時にリスタート
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.terminal')) {
+                // リセット
+                commandIndex = 0;
+                charIndex = 0;
+                isDeleting = false;
+                const typingElement = document.getElementById('typing-text');
+                const output = document.getElementById('terminal-output');
+                if (typingElement) typingElement.textContent = '';
+                if (output) output.style.opacity = '0';
+                setTimeout(typeWriter, 300);
+            }
+        });
+    </script>
+    
     <!-- Schema.org structured data for better SEO -->
     <script type="application/ld+json">
     {
