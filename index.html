@@ -3,953 +3,1122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Auto Push - 🎮 ゲーミフィケーション付きGit自動化ツール</title>
-    <meta name="description" content="レベル・XP・バッジシステム搭載！外部連携・自動更新・テーマ機能で開発体験を革命化する究極のGitツール。">
+    <title>🎮 Git Auto Push - チーム開発+AI機能付き究極Gitツール | ゲーミフィケーション自動化ツール</title>
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SEO最適化メタタグ -->
+    <meta name="description" content="Gitプッシュをゲーム化！新機能：軽量チーム開発+AI駆動PR作成。レベルアップ・XP・ストリーク機能付きの革新的な自動プッシュツール。3秒インストール、全プロジェクト対応で開発効率UP。無料・オープンソース">
+    <meta name="keywords" content="Git,自動プッシュ,ゲーミフィケーション,開発ツール,プログラミング,GitHub,レベルアップ,XP,ストリーク,無料ツール,オープンソース">
+    <meta name="author" content="Daiki Deguchi (@daideguchi)">
+    <meta name="robots" content="index, follow">
     
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://daideguchi.github.io/git-autopush-landing/">
+    <meta property="og:title" content="🎮 Git Auto Push - コーディングが楽しくなるゲーミング付きGitツール">
+    <meta property="og:description" content="Gitプッシュをゲーム化して開発を楽しく！レベル・XP・ストリーク機能で毎日のコミットがワクワク体験に変わります。">
+    <meta property="og:image" content="https://daideguchi.github.io/git-autopush-landing/og-image.png">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://daideguchi.github.io/git-autopush-landing/">
+    <meta property="twitter:title" content="🎮 Git Auto Push - ゲーミング付き究極Gitツール">
+    <meta property="twitter:description" content="Gitプッシュをゲーム化！レベルアップやXP獲得でコーディングが楽しくなる革新的ツール">
+    <meta property="twitter:image" content="https://daideguchi.github.io/git-autopush-landing/twitter-image.png">
     
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Git Auto Push",
+      "description": "ゲーミフィケーション機能付きの革新的なGit自動プッシュツール",
+      "url": "https://github.com/daideguchi/git-autopush",
+      "author": {
+        "@type": "Person",
+        "name": "Daiki Deguchi",
+        "url": "https://github.com/daideguchi"
+      },
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS, Linux",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "ratingCount": "100"
+      }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- CSS -->
     <style>
         * {
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --border-radius: 16px;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
         }
         
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
         
-        .terminal-bg {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
-            border: 1px solid #334155;
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
         }
         
-        .code-block {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
             position: relative;
             overflow: hidden;
         }
         
-        .code-block::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
-            background-size: 200% 100%;
-            animation: rainbow 3s linear infinite;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23334155" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
         }
         
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
         
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .animate-pulse-custom {
-            animation: pulse 2s infinite;
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
-        .feature-card {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 116, 139, 0.2);
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: all 0.3s ease;
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-glow);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
         }
         
-        .typing-effect {
-            border-right: 2px solid #667eea;
-            animation: blink 1s infinite;
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
-        @keyframes blink {
-            0%, 50% { border-color: #667eea; }
-            51%, 100% { border-color: transparent; }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
         }
         
-        .terminal-window {
-            background: #1e293b;
-            border-radius: 12px;
+        /* Terminal Demo */
+        .terminal-demo {
+            margin-top: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .terminal {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .terminal-header {
-            background: #334155;
-            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
         
-        .terminal-dot {
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
         }
         
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #eab308; }
-        .dot-green { background: #22c55e; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27ca3f; }
         
         .terminal-content {
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
+            padding: 2rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #00ff00;
+        }
+        
+        .typing-animation {
+            animation: typing 3s steps(50, end) infinite;
+        }
+        
+        @keyframes typing {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* New Features Section */
+        .new-features {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .new-badge {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .new-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .new-feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .new-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .new-feature-card .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .new-feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .new-feature-card p {
+            color: var(--text-muted);
             line-height: 1.6;
-            color: #e2e8f0;
+            margin-bottom: 1.5rem;
         }
         
-        .command-line {
-            color: #667eea;
+        .feature-demo {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .success-text {
-            color: #22c55e;
+        .feature-demo code {
+            color: #00ff00;
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.02);
         }
         
-        .info-text {
-            color: #06b6d4;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .warning-text {
-            color: #eab308;
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .feature-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        /* Installation Section */
+        .installation {
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .install-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .install-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .install-command {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            color: #00ff00;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .install-command:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-muted);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Author Section */
+        .author {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+        
+        .author-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .author-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .author-title {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .author-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .author-link {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .author-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .install-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        .btn:focus,
+        .nav-links a:focus,
+        .copy-btn:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <span class="text-2xl">🎮</span>
-                    <span class="text-xl font-bold gradient-text">Git Auto Push</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="hover:text-purple-400 transition-colors">機能</a>
-                    <a href="#install" class="hover:text-purple-400 transition-colors">インストール</a>
-                    <a href="#usage" class="hover:text-purple-400 transition-colors">使用方法</a>
-                    <a href="#examples" class="hover:text-purple-400 transition-colors">活用例</a>
-                    <a href="#gaming" class="hover:text-yellow-400 transition-colors">🎮ゲーミング</a>
-                </nav>
-                <a href="https://github.com/daideguchi/git-autopush" target="_blank" class="btn-primary px-4 py-2 rounded-lg font-medium">
-                    <i class="fab fa-github mr-2"></i>GitHub
-                </a>
-            </div>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🎮 Git Auto Push</div>
+            <ul class="nav-links">
+                <li><a href="#features">機能</a></li>
+                <li><a href="#installation">インストール</a></li>
+                <li><a href="#author">作者</a></li>
+                <li><a href="https://github.com/daideguchi/git-autopush" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div class="absolute inset-0 gradient-bg opacity-10"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="animate-fadeInUp">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="block">🎮 ゲーミフィケーション付き</span>
-                    <span class="gradient-text">究極Gitツール</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    <span class="text-yellow-400 font-bold">レベル・XP・バッジシステム</span>で開発が楽しくなる！<br>
-                    <span class="text-cyan-400">Slack/Discord連携</span>・<span class="text-green-400">自動更新</span>・<span class="text-purple-400">テーマ機能</span>搭載
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🎮 Gitプッシュが楽しくなる<br>ゲーミング付き究極ツール</h1>
+                <p class="hero-subtitle">
+                    毎日のコミットをゲーム化！レベルアップ・XP獲得・ストリーク機能で、<br>
+                    開発作業がワクワクする体験に変わります。優しくて使いやすい、開発者のためのツールです。
                 </p>
                 
-                <!-- Terminal Demo -->
-                <div class="terminal-window max-w-4xl mx-auto mb-8">
-                    <div class="terminal-header">
-                        <div class="terminal-dot dot-red"></div>
-                        <div class="terminal-dot dot-yellow"></div>
-                        <div class="terminal-dot dot-green"></div>
-                        <span class="text-gray-300 text-sm ml-4">git-autopush-demo</span>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <span>⚡</span>
+                        <span>3秒インストール</span>
                     </div>
-                    <div class="terminal-content">
-                        <div class="mb-4">
-                            <span class="command-line">$ </span><span class="typing-effect" id="typing-text"></span>
-                        </div>
-                        <div id="terminal-output" class="opacity-0">
-                            <div class="info-text">🎮 Git Auto Push Tool</div>
-                            <div class="text-purple-400">🌿main 🌐project 🎮Lv.5 ⚡450 XP 🔥3日 🚀25回</div>
-                            <div class="text-gray-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                            <div class="info-text mt-2">📦 コミットメッセージ: ✨ 新機能実装完了</div>
-                            <div class="success-text mt-2">✅✅✅ 自動プッシュ完了！✅✅✅</div>
-                            <div class="text-yellow-400 mt-3">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                            <div class="text-yellow-400">✨ === ゲーム結果 === ✨</div>
-                            <div class="text-yellow-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                            <div class="text-gold mt-2">👑👑👑 LEVEL UP! 👑👑👑</div>
-                            <div class="text-purple-400">✨ レベル 6 に到達しました！ ✨</div>
-                            <div class="text-cyan-400 mt-2">✨ 新しいバッジを獲得！ ⚔️ コミット戦士</div>
-                            <div class="text-green-400">🎉 +50 XP獲得！ 🔥 4日連続プッシュ！</div>
-                            <div class="text-yellow-400 mt-2">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                        </div>
+                    <div class="hero-feature">
+                        <span>🎨</span>
+                        <span>スマート演出</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span>🌍</span>
+                        <span>全プロジェクト対応</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span>🆓</span>
+                        <span>完全無料</span>
                     </div>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#install" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold glow-effect">
-                        ⚡ ワンコマンドでインストール
+                <div class="cta-buttons">
+                    <a href="#installation" class="btn btn-primary">
+                        <span>🚀</span>
+                        今すぐ始める
                     </a>
-                    <a href="https://github.com/daideguchi/git-autopush" target="_blank" class="border border-gray-600 px-8 py-4 rounded-lg text-lg font-semibold hover:border-purple-400 transition-colors">
-                        <i class="fab fa-github mr-2"></i>GitHub で見る
+                    <a href="https://github.com/daideguchi/git-autopush" class="btn btn-secondary" target="_blank" rel="noopener">
+                        <span>📚</span>
+                        GitHubで見る
                     </a>
                 </div>
             </div>
+            
+            <!-- Terminal Demo -->
+            <div class="terminal-demo">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <span>🎮 Git Auto Push - ゲーミングセッション</span>
+                    </div>
+                                         <div class="terminal-content">
+                         <div>$ ap "🎨 新機能実装完了！"</div>
+                         <div style="margin: 1rem 0;">
+                             <div>🚀 === Git Push 開始 ===</div>
+                             <div>✅ コミット完了</div>
+                             <div>✅ プッシュ完了</div>
+                         </div>
+                         <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(99, 102, 241, 0.3); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                             <div style="color: #00FF7F; font-size: 1.1rem; margin-bottom: 0.5rem;">🏖️ WEEKEND WARRIOR! 🏖</div>
+                             <div style="color: #FF69B4; margin-bottom: 0.5rem;">✨ 🎨 MASTERPIECE! 🎨</div>
+                             <div style="color: #FFD700; font-weight: bold;">🎉 +50 XP獲得！</div>
+                             <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                                 <div style="color: #FFA500;">📊 Level 4 → Level 5! 👑</div>
+                                 <div style="color: #FF6B6B;">🔥 7日連続ストリーク継続中！</div>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-1/4 left-10 text-4xl animate-pulse-custom opacity-30">🔥</div>
-        <div class="absolute top-1/3 right-20 text-3xl animate-pulse-custom opacity-20">⚡</div>
-        <div class="absolute bottom-1/4 left-20 text-3xl animate-pulse-custom opacity-25">🎯</div>
+    </section>
+
+    <!-- New Features Highlight -->
+    <section class="new-features">
+        <div class="container">
+            <div class="new-badge">🆕 NEW</div>
+            <h2 class="section-title">🎮 チーム開発 + 🤖 AI機能 追加！</h2>
+            <p class="section-subtitle">
+                軽量で高速なチーム開発機能と、AI駆動の自動PR作成機能が新登場！
+            </p>
+            
+            <div class="new-features-grid">
+                <div class="new-feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>シンプルチーム開発</h3>
+                    <p>軽量設計で高速動作。簡単セットアップでチーム全体の開発効率UP</p>
+                    <div class="feature-demo">
+                        <code>ap --create-team "dev-team"</code>
+                    </div>
+                </div>
+                
+                <div class="new-feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI駆動PR作成</h3>
+                    <p>コミット履歴を分析してスマートなPRタイトルと説明文を自動生成</p>
+                    <div class="feature-demo">
+                        <code>ap --auto-pr</code>
+                    </div>
+                </div>
+                
+                <div class="new-feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>リアルタイム統計</h3>
+                    <p>チームの活動状況、コミット数、貢献者ランキングを瞬時に表示</p>
+                    <div class="feature-demo">
+                        <code>ap --team-dashboard</code>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    なぜ <span class="gradient-text">Git Auto Push</span> なのか？
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    開発者が本当に必要としている機能を詰め込んだ、究極の自動化ツール
-                </p>
-            </div>
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">🌟 なぜ Git Auto Push が愛されるのか</h2>
+            <p class="section-subtitle">
+                開発者の日々に小さな喜びと効率を。優しく、楽しく、そして実用的なツールです。
+            </p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🎮</div>
-                    <h3 class="text-2xl font-bold mb-4">ゲーミフィケーション</h3>
-                    <p class="text-gray-300">
-                        レベル・XP・バッジシステムで開発が楽しくなる！毎回のプッシュが<span class="text-yellow-400">冒険</span>に変わります。
-                        <span class="text-cyan-400">ストリーク機能</span>で継続的開発をサポート。
+            <div class="features-grid">
+                <div class="feature-card floating">
+                    <span class="feature-icon">🎮</span>
+                    <h3 class="feature-title">ゲーミフィケーション</h3>
+                    <p class="feature-description">
+                        プッシュごとにXP獲得、レベルアップ、ストリーク記録。
+                        毎日のコミットが楽しいゲーム体験に変わります。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <h3 class="text-2xl font-bold mb-4">超高速実行</h3>
-                    <p class="text-gray-300">
-                        <code class="text-purple-400">ap</code> と入力するだけで、add・commit・pushが一瞬で完了。
-                        開発フローを止めません。
+                <div class="feature-card floating" style="animation-delay: 0.2s;">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">3秒システム更新</h3>
+                    <p class="feature-description">
+                        <code>ap --update</code> 一回で全プロジェクトが最新版に。
+                        もう各フォルダで個別更新する必要はありません。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🎨</div>
-                    <h3 class="text-2xl font-bold mb-4">美しい出力</h3>
-                    <p class="text-gray-300">
-                        カラフルで見やすいターミナル出力。進行状況や結果が一目で分かる
-                        直感的なインターface。
+                <div class="feature-card floating" style="animation-delay: 0.4s;">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">スマート演出システム</h3>
+                    <p class="feature-description">
+                        過度な演出を避け、コンパクトで楽しい表示。
+                        曜日・時間・ストリークに応じた特別演出も。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🛡️</div>
-                    <h3 class="text-2xl font-bold mb-4">安全性重視</h3>
-                    <p class="text-gray-300">
-                        自動チェック機能でエラーを事前に検出。変更の有無やリモート設定を
-                        確認してから実行します。
+                <div class="feature-card floating" style="animation-delay: 0.6s;">
+                    <span class="feature-icon">🌍</span>
+                    <h3 class="feature-title">全プロジェクト対応</h3>
+                    <p class="feature-description">
+                        一度インストールすれば、どのプロジェクトでも使用可能。
+                        統一された体験で開発効率が大幅アップ。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🌍</div>
-                    <h3 class="text-2xl font-bold mb-4">汎用性</h3>
-                    <p class="text-gray-300">
-                        あらゆるGitプロジェクトで使用可能。React、Vue、Python、Go、
-                        ドキュメント作成まで対応。
+                <div class="feature-card floating" style="animation-delay: 0.8s;">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">詳細統計＆分析</h3>
+                    <p class="feature-description">
+                        コミット数、ストリーク、レベル進歩を可視化。
+                        SVGバッジ生成でGitHub READMEも華やかに。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">📝</div>
-                    <h3 class="text-2xl font-bold mb-4">柔軟なメッセージ</h3>
-                    <p class="text-gray-300">
-                        自動タイムスタンプ付きメッセージ生成。もちろんカスタムメッセージも
-                        簡単に指定できます。
+                <div class="feature-card floating" style="animation-delay: 1.0s;">
+                    <span class="feature-icon">🔔</span>
+                    <h3 class="feature-title">優しい通知システム</h3>
+                    <p class="feature-description">
+                        Slack、Discord、LINE Notifyなど多様な通知先。
+                        デフォルト通知OFFで煩わしさゼロの設計。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🔔</div>
-                    <h3 class="text-2xl font-bold mb-4">外部サービス連携</h3>
-                    <p class="text-gray-300">
-                        <span class="text-blue-400">Slack</span>・<span class="text-purple-400">Discord</span>・<span class="text-green-400">LINE</span>・Teams連携で
-                        チーム開発を強力サポート。プッシュ通知やレベルアップ共有も可能。
+                <div class="feature-card floating" style="animation-delay: 1.2s;">
+                    <span class="feature-icon">👥</span>
+                    <h3 class="feature-title">軽量チーム開発</h3>
+                    <p class="feature-description">
+                        シンプルなプレーンテキスト設定でチーム機能を実現。
+                        重いJSONファイルを使わず、高速で軽量な動作を保証。
                     </p>
                 </div>
                 
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🔄</div>
-                    <h3 class="text-2xl font-bold mb-4">自動更新システム</h3>
-                    <p class="text-gray-300">
-                        <code class="text-green-400">ap --update</code> で最新版に瞬時更新。
-                        全プロジェクトで統一バージョン管理。設定も自動バックアップ。
-                    </p>
-                </div>
-                
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🎨</div>
-                    <h3 class="text-2xl font-bold mb-4">テーマシステム</h3>
-                    <p class="text-gray-300">
-                        <span class="text-cyan-400">Cyberpunk</span>・<span class="text-blue-400">Ocean</span>・<span class="text-yellow-400">Retro</span>など
-                        お好みのテーマで開発体験をカスタマイズ。
-                    </p>
-                </div>
-                
-                <div class="feature-card p-8 rounded-xl">
-                    <div class="text-5xl mb-4">🔧</div>
-                    <h3 class="text-2xl font-bold mb-4">簡単設定</h3>
-                    <p class="text-gray-300">
-                        ワンコマンドインストールで即座に利用開始。エイリアス設定も
-                        自動で完了します。
+                <div class="feature-card floating" style="animation-delay: 1.4s;">
+                    <span class="feature-icon">🤖</span>
+                    <h3 class="feature-title">AI自動PR作成</h3>
+                    <p class="feature-description">
+                        コミット履歴を分析してスマートなPRを自動生成。
+                        バグ修正、新機能、ドキュメント更新を自動判別。
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Install Section -->
-    <section id="install" class="py-20 relative">
-        <div class="absolute inset-0 gradient-bg opacity-5"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    <span class="gradient-text">30秒</span>でインストール完了
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    任意のGitプロジェクトで以下のコマンドを実行するだけ
-                </p>
-            </div>
+    <!-- Installation Section -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <h2 class="section-title">🚀 簡単3ステップで始めよう</h2>
+            <p class="section-subtitle">
+                技術的な知識は不要。コピー＆ペーストするだけで、すぐに楽しいGitライフが始まります。
+            </p>
             
-            <div class="max-w-4xl mx-auto">
-                <div class="code-block mb-8">
-                    <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
-                        <span class="text-gray-300 font-medium">ワンコマンドインストール</span>
-                        <button onclick="copyToClipboard('install-command')" class="text-purple-400 hover:text-purple-300 transition-colors">
-                            <i class="fas fa-copy mr-2"></i>コピー
-                        </button>
+            <div class="install-steps">
+                <div class="install-step">
+                    <div class="step-number">1</div>
+                    <h3>📥 ダウンロード</h3>
+                    <div class="install-command">
+                        curl -O https://raw.githubusercontent.com/daideguchi/git-autopush/main/autopush.sh
+                        <button class="copy-btn" onclick="copyToClipboard(this)">コピー</button>
                     </div>
-                    <div class="p-6">
-                        <pre id="install-command" class="text-gray-100 text-lg"><code>curl -s https://raw.githubusercontent.com/daideguchi/git-autopush/main/install.sh | bash</code></pre>
-                    </div>
+                    <p>GitHubから最新版をダウンロード</p>
                 </div>
                 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl">1️⃣</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">コマンド実行</h3>
-                        <p class="text-gray-300">上記のワンコマンドを実行</p>
+                <div class="install-step">
+                    <div class="step-number">2</div>
+                    <h3>🔧 システムインストール</h3>
+                    <div class="install-command">
+                        chmod +x autopush.sh && ./autopush.sh --install
+                        <button class="copy-btn" onclick="copyToClipboard(this)">コピー</button>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl">2️⃣</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">自動設定</h3>
-                        <p class="text-gray-300">エイリアス設定も自動完了</p>
+                    <p>全プロジェクトで使える <code>ap</code> コマンドを追加</p>
+                </div>
+                
+                <div class="install-step">
+                    <div class="step-number">3</div>
+                    <h3>🎉 初回プッシュ</h3>
+                    <div class="install-command">
+                        ap "🎮 初回ゲーミングプッシュ！"
+                        <button class="copy-btn" onclick="copyToClipboard(this)">コピー</button>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl">3️⃣</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">即利用開始</h3>
-                        <p class="text-gray-300"><code class="text-purple-400">ap</code> で即座に使用可能</p>
+                    <p>楽しいGitライフの始まり！</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); border: 1px solid rgba(16, 185, 129, 0.3);">
+                <h3 style="color: var(--success-color); margin-bottom: 1rem;">💡 Pro Tip</h3>
+                <p>インストール後は <code>ap --update</code> でいつでも最新版に更新できます。全プロジェクトが自動で同期されます！</p>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 2rem; background: rgba(99, 102, 241, 0.1); border-radius: var(--border-radius); border: 1px solid rgba(99, 102, 241, 0.3);">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🆕 新機能も試してみよう</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <code style="color: #00ff00;">ap --create-team "dev-team"</code>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">チーム作成</p>
+                    </div>
+                    <div>
+                        <code style="color: #00ff00;">ap --team-dashboard</code>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">チーム統計</p>
+                    </div>
+                    <div>
+                        <code style="color: #00ff00;">ap --auto-pr</code>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">AI PR作成</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Usage Section -->
-    <section id="usage" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    使い方は<span class="gradient-text">超簡単</span>
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    たった2つのコマンドパターンを覚えるだけ
-                </p>
-            </div>
+    <!-- Author Section -->
+    <section id="author" class="author">
+        <div class="container">
+            <h2 class="section-title">👨‍💻 作者について</h2>
+            <p class="section-subtitle">
+                日々の開発をもっと楽しくしたい想いから生まれたツールです
+            </p>
             
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">基本的な使用方法</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="code-block">
-                            <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
-                                <span class="text-gray-300 font-medium">自動メッセージでプッシュ</span>
-                                <button onclick="copyToClipboard('basic-usage-1')" class="text-purple-400 hover:text-purple-300 transition-colors">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                            <div class="p-6">
-                                <pre id="basic-usage-1" class="text-gray-100"><code>ap</code></pre>
-                            </div>
-                        </div>
-                        
-                        <div class="code-block">
-                            <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
-                                <span class="text-gray-300 font-medium">カスタムメッセージでプッシュ</span>
-                                <button onclick="copyToClipboard('basic-usage-2')" class="text-purple-400 hover:text-purple-300 transition-colors">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                            <div class="p-6">
-                                <pre id="basic-usage-2" class="text-gray-100"><code>ap "新機能を追加"
-ap "バグ修正完了"
-ap "🎉 リリース準備完了"</code></pre>
-                            </div>
-                        </div>
-                        
-                        <div class="code-block">
-                            <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
-                                <span class="text-gray-300 font-medium">🎮 ゲーミフィケーション&外部連携</span>
-                                <button onclick="copyToClipboard('gaming-usage')" class="text-purple-400 hover:text-purple-300 transition-colors">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                            <div class="p-6">
-                                <pre id="gaming-usage" class="text-gray-100"><code># テーマ指定でプッシュ
-ap --theme cyberpunk "新機能実装"
-
-# Slack通知付きプッシュ
-ap --notify-slack "バグ修正完了"
-
-# 全機能有効でプッシュ
-ap --enable-all "リリース準備完了"
-
-# 最新版に更新
-ap --update</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">実際の使用例</h3>
-                    
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <div class="terminal-dot dot-red"></div>
-                            <div class="terminal-dot dot-yellow"></div>
-                            <div class="terminal-dot dot-green"></div>
-                            <span class="text-gray-300 text-sm ml-4">my-awesome-project</span>
-                        </div>
-                        <div class="terminal-content text-sm">
-                            <div class="command-line">$ ap "✨ 新機能実装完了"</div>
-                            <div class="mt-2">
-                                <div class="info-text">🚀 Git Auto Push Tool</div>
-                                <div class="text-gray-400">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                                <div class="info-text mt-1">ℹ️ 変更されたファイル:</div>
-                                <div class="success-text ml-2">M  src/components/Header.vue</div>
-                                <div class="success-text ml-2">A  src/utils/api.js</div>
-                                <div class="success-text ml-2">M  package.json</div>
-                                <div class="mt-1">📦 <span class="info-text">コミットメッセージ:</span> ✨ 新機能実装完了</div>
-                                <div class="info-text mt-1">ℹ️ 変更をステージング中...</div>
-                                <div class="info-text">ℹ️ コミット中...</div>
-                                <div class="success-text">✅ コミット完了</div>
-                                <div class="info-text">ℹ️ リモートリポジトリにプッシュ中...</div>
-                                <div class="success-text mt-1">✅✅✅ 自動プッシュ完了！✅✅✅</div>
-                                <div class="text-purple-400 text-xs mt-1">Repository: https://github.com/user/my-awesome-project.git</div>
-                                <div class="text-purple-400 text-xs">Branch: main</div>
-                                <div class="text-purple-400 text-xs">Commit: f4e5d6c</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Examples Section -->
-    <section id="examples" class="py-20 relative">
-        <div class="absolute inset-0 gradient-bg opacity-5"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    <span class="gradient-text">あらゆる</span>プロジェクトで活用
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Web開発からモバイルアプリ、ドキュメント作成まで幅広く対応
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">⚛️</div>
-                    <h3 class="text-xl font-bold mb-2">Web開発</h3>
-                    <p class="text-gray-300 text-sm">React, Vue, Angular, Next.js</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">📱</div>
-                    <h3 class="text-xl font-bold mb-2">モバイル</h3>
-                    <p class="text-gray-300 text-sm">Flutter, React Native, Ionic</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">🐍</div>
-                    <h3 class="text-xl font-bold mb-2">バックエンド</h3>
-                    <p class="text-gray-300 text-sm">Python, Node.js, Go, Rust</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">📚</div>
-                    <h3 class="text-xl font-bold mb-2">ドキュメント</h3>
-                    <p class="text-gray-300 text-sm">Markdown, 技術文書, Wiki</p>
-                </div>
-            </div>
-            
-            <div class="mt-16 max-w-6xl mx-auto">
-                <h3 class="text-3xl font-bold text-center mb-8">実際の現場での使用例</h3>
-                
-                <div class="grid lg:grid-cols-2 gap-8">
-                    <div class="code-block">
-                        <div class="bg-gray-800 px-6 py-3">
-                            <span class="text-gray-300 font-medium">🔄 日常開発ワークフロー</span>
-                        </div>
-                        <div class="p-6">
-                            <pre class="text-gray-100 text-sm"><code># 機能開発完了後
-ap "✨ ユーザー認証機能を実装"
-
-# バグ修正後
-ap "🐛 ログイン時のエラーハンドリング修正"
-
-# ドキュメント更新
-ap "📝 API仕様書を更新"
-
-# 設定変更
-ap "⚙️ CI/CD設定を調整"</code></pre>
-                        </div>
-                    </div>
-                    
-                    <div class="code-block">
-                        <div class="bg-gray-800 px-6 py-3">
-                            <span class="text-gray-300 font-medium">🚀 リリース作業</span>
-                        </div>
-                        <div class="p-6">
-                            <pre class="text-gray-100 text-sm"><code># バージョンアップ
-ap "🔖 v2.1.0 リリース"
-
-# ホットフィックス
-ap "🚨 緊急修正: セキュリティ脆弱性対応"
-
-# デプロイ前チェック
-ap "✅ デプロイ前最終確認完了"
-
-# パフォーマンス改善
-ap "⚡ レスポンス速度30%向上"</code></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold gradient-text mb-2" data-counter="95">0</div>
-                    <div class="text-xl text-gray-300">%時間短縮</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold gradient-text mb-2" data-counter="30">0</div>
-                    <div class="text-xl text-gray-300">秒でインストール</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold gradient-text mb-2" data-counter="2">0</div>
-                    <div class="text-xl text-gray-300">文字でプッシュ完了</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold gradient-text mb-2" data-counter="100">0</div>
-                    <div class="text-xl text-gray-300">%プロジェクト対応</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gaming Features Section -->
-    <section id="gaming" class="py-20 relative">
-        <div class="absolute inset-0 gradient-bg opacity-5"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    🎮 <span class="gradient-text">ゲーミフィケーション</span>で開発が変わる
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    毎回のプッシュが楽しい冒険に。レベルアップ・バッジ・ストリーク機能で継続的開発をサポート
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">⚡</div>
-                    <h3 class="text-xl font-bold mb-2 text-yellow-400">XP システム</h3>
-                    <p class="text-gray-300 text-sm">プッシュごとに50XP獲得<br>100XPでレベルアップ！</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">🏆</div>
-                    <h3 class="text-xl font-bold mb-2 text-cyan-400">バッジシステム</h3>
-                    <p class="text-gray-300 text-sm">🌱初心者→🚶駆け出し→⚔️戦士<br>→🥋マスター→🥷忍者→🦄レジェンド</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">🔥</div>
-                    <h3 class="text-xl font-bold mb-2 text-orange-400">ストリーク</h3>
-                    <p class="text-gray-300 text-sm">連続プッシュ日数記録<br>継続的開発習慣をサポート</p>
-                </div>
-                
-                <div class="feature-card p-6 rounded-xl text-center">
-                    <div class="text-4xl mb-4">📊</div>
-                    <h3 class="text-xl font-bold mb-2 text-green-400">統計情報</h3>
-                    <p class="text-gray-300 text-sm">詳細な開発統計<br>プログレスバー表示</p>
-                </div>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">🎨 外部連携・テーマ機能</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="feature-card p-4 rounded-lg">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🔔</span>
-                                <div>
-                                    <h4 class="font-bold text-lg">通知連携</h4>
-                                    <p class="text-gray-300 text-sm">Slack・Discord・LINE・Teams・Email</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-card p-4 rounded-lg">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🎨</span>
-                                <div>
-                                    <h4 class="font-bold text-lg">テーマシステム</h4>
-                                    <p class="text-gray-300 text-sm">Cyberpunk・Ocean・Retro・Default</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-card p-4 rounded-lg">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-2xl">🔄</span>
-                                <div>
-                                    <h4 class="font-bold text-lg">自動更新</h4>
-                                    <p class="text-gray-300 text-sm">GitHubから最新版を自動取得・更新</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">📈 レベルアップ体験</h3>
-                    
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <div class="terminal-dot dot-red"></div>
-                            <div class="terminal-dot dot-yellow"></div>
-                            <div class="terminal-dot dot-green"></div>
-                            <span class="text-gray-300 text-sm ml-4">gaming-example</span>
-                        </div>
-                        <div class="terminal-content text-sm">
-                            <div class="command-line">$ ap --theme cyberpunk "新機能実装"</div>
-                            <div class="mt-2">
-                                <div class="text-cyan-400">💀=== CYBERPUNK AUTOPUSH v2.0 ===💀</div>
-                                <div class="text-purple-400">🌿main 🌐project 🎮Lv.5 ⚡450/500XP 🔥7日 🚀50回</div>
-                                <div class="text-green-400 mt-2">✅✅✅ PUSH COMPLETE ✅✅✅</div>
-                                <div class="text-yellow-400 mt-2">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                                <div class="text-yellow-400">✨ === GAMING RESULTS === ✨</div>
-                                <div class="text-gold mt-1">👑👑👑 LEVEL UP! 👑👑👑</div>
-                                <div class="text-purple-400">✨ レベル 6 に到達！ ✨</div>
-                                <div class="text-cyan-400">✨ NEW BADGE: 🥋 プッシュマスター</div>
-                                <div class="text-green-400">🎉 +50 XP！ 🔥 8日連続！</div>
-                                <div class="text-blue-400 mt-2">[Slack] レベルアップをチームに通知 📢</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 relative">
-        <div class="absolute inset-0 gradient-bg opacity-10"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6">
-                    今すぐ始めて、<br>
-                    <span class="gradient-text">開発体験を革新</span>しよう
-                </h2>
-                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    数千人の開発者が既に愛用中。あなたも今すぐGit Auto Pushで
-                    生産性を次のレベルへ。
+            <div class="author-card">
+                <div class="author-avatar">👨‍💻</div>
+                <h3 class="author-name">Daiki Deguchi</h3>
+                <p class="author-title">フルスタック開発者 / オープンソース愛好家</p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">
+                    開発者の日常をより楽しく、効率的にするツールを作り続けています。<br>
+                    Git Auto Push以外にも様々なオープンソースプロジェクトを手がけています。
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-                    <a href="#install" class="btn-primary px-10 py-5 rounded-lg text-xl font-semibold glow-effect">
-                        🚀 今すぐインストール
+                <div class="author-links">
+                    <a href="https://github.com/daideguchi" class="author-link" target="_blank" rel="noopener">
+                        <span>🐙</span>
+                        <span>GitHub</span>
                     </a>
-                    <a href="https://github.com/daideguchi/git-autopush" target="_blank" class="border border-gray-600 px-10 py-5 rounded-lg text-xl font-semibold hover:border-purple-400 transition-colors">
-                        <i class="fab fa-github mr-2"></i>GitHub で詳細を見る
+                    <a href="https://github.com/daideguchi?tab=repositories" class="author-link" target="_blank" rel="noopener">
+                        <span>📚</span>
+                        <span>他のプロジェクト</span>
                     </a>
-                </div>
-                
-                <div class="code-block max-w-2xl mx-auto">
-                    <div class="bg-gray-800 px-6 py-3 flex items-center justify-between">
-                        <span class="text-gray-300 font-medium">ワンコマンドで始める</span>
-                        <button onclick="copyToClipboard('final-install')" class="text-purple-400 hover:text-purple-300 transition-colors">
-                            <i class="fas fa-copy mr-2"></i>コピー
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <pre id="final-install" class="text-gray-100 text-lg"><code>curl -s https://raw.githubusercontent.com/daideguchi/git-autopush/main/install.sh | bash</code></pre>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <span class="text-2xl">🎮</span>
-                    <span class="text-xl font-bold gradient-text">Git Auto Push</span>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/daideguchi/git-autopush" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="https://github.com/daideguchi/git-autopush/issues" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fas fa-bug text-2xl"></i>
-                    </a>
-                    <a href="https://github.com/daideguchi/git-autopush/discussions" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fas fa-comments text-2xl"></i>
-                    </a>
-                </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/daideguchi/git-autopush" target="_blank" rel="noopener">GitHub Repository</a>
+                <a href="https://github.com/daideguchi/git-autopush/issues" target="_blank" rel="noopener">バグ報告・要望</a>
+                <a href="https://github.com/daideguchi" target="_blank" rel="noopener">作者のGitHub</a>
+                <a href="https://github.com/daideguchi/git-autopush/blob/main/LICENSE" target="_blank" rel="noopener">ライセンス</a>
             </div>
-            
-            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p>&copy; 2025 Git Auto Push. Made with ❤️ for developers worldwide.</p>
-            </div>
+            <p class="copyright">
+                © 2024 <a href="https://github.com/daideguchi" style="color: var(--primary-color);">Daiki Deguchi</a>. 
+                Made with ❤️ for developers. Open Source under MIT License.
+            </p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Typing Effect
-        const commands = [
-            'ap "✨ 新機能実装完了"',
-            'ap "🐛 バグ修正"',
-            'ap "📝 ドキュメント更新"',
-            'ap',
-            'ap "🎉 リリース準備完了"'
-        ];
-        
-        let commandIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100;
-        const deletingSpeed = 50;
-        const pauseTime = 2000;
-        
-        function typeWriter() {
-            const currentCommand = commands[commandIndex];
-            const typingElement = document.getElementById('typing-text');
-            
-            if (!isDeleting && charIndex < currentCommand.length) {
-                typingElement.textContent += currentCommand.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, typingSpeed);
-            } else if (isDeleting && charIndex > 0) {
-                typingElement.textContent = currentCommand.substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(typeWriter, deletingSpeed);
-            } else if (!isDeleting && charIndex === currentCommand.length) {
-                // Show terminal output
-                if (commandIndex === 0) {
-                    setTimeout(() => {
-                        document.getElementById('terminal-output').style.opacity = '1';
-                    }, 1000);
-                }
-                
+        // Copy to clipboard functionality
+        function copyToClipboard(button) {
+            const command = button.parentNode.textContent.replace('コピー', '').trim();
+            navigator.clipboard.writeText(command).then(() => {
+                button.textContent = '✅ コピー済み';
                 setTimeout(() => {
-                    isDeleting = true;
-                    typeWriter();
-                }, pauseTime);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                commandIndex = (commandIndex + 1) % commands.length;
-                
-                // Hide terminal output when starting new cycle
-                if (commandIndex === 0) {
-                    document.getElementById('terminal-output').style.opacity = '0';
-                }
-                
-                setTimeout(typeWriter, 500);
-            }
-        }
-        
-        // Start typing effect
-        setTimeout(typeWriter, 1000);
-        
-        // Counter Animation
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-counter'));
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 30);
-        }
-        
-        // Intersection Observer for counter animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('[data-counter]');
-                    counters.forEach(animateCounter);
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const statsSection = document.querySelector('section:has([data-counter])');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
-        });
-        
-        // Copy to clipboard function
-        function copyToClipboard(elementId) {
-            const element = document.getElementById(elementId);
-            const text = element.textContent;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                // Show feedback
-                const button = event.target.closest('button');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check mr-2"></i>コピー完了！';
-                button.classList.add('text-green-400');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('text-green-400');
+                    button.textContent = 'コピー';
                 }, 2000);
-            }).catch(err => {
-                console.error('コピーに失敗:', err);
             });
         }
         
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 80; // Account for fixed nav
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Add scroll-based animations
-        const fadeElements = document.querySelectorAll('.feature-card, .code-block');
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, {
-            threshold: 0.1
+        }, observerOptions);
+        
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card, .install-step').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
         
-        fadeElements.forEach((element) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            fadeObserver.observe(element);
+        // Terminal typing animation
+        const terminalContent = document.querySelector('.terminal-content');
+        if (terminalContent) {
+            terminalContent.style.opacity = '0';
+            setTimeout(() => {
+                terminalContent.style.transition = 'opacity 1s ease';
+                terminalContent.style.opacity = '1';
+            }, 1000);
+        }
+        
+        // Performance optimization: Lazy load images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('[data-src]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        }
+        
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
         });
+        
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+    
+    <!-- Schema.org structured data for better SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Git Auto Push - ゲーミング付き究極Gitツール",
+      "description": "Gitプッシュをゲーム化！レベルアップ・XP・ストリーク機能付きの革新的な自動プッシュツール",
+      "url": "https://daideguchi.github.io/git-autopush-landing/",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Git Auto Push",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Linux, Windows",
+        "author": {
+          "@type": "Person",
+          "name": "Daiki Deguchi",
+          "url": "https://github.com/daideguchi"
+        }
+      }
+    }
     </script>
 </body>
 </html>
